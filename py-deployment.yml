@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wy-py-dep
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: wy-py
+  template:
+    metadata:
+      labels:
+        app: wy-py
+    spec:
+      containers:
+        - name: wy-py-con
+          image: 655088038759.dkr.ecr.ap-northeast-2.amazonaws.com/wy-redispy:15
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wy-py-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: wy-py
+  ports:
+  - port: 5000
+    targetPort: 5000
