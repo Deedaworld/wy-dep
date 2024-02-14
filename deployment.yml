@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-deploy
+  name: wy-node-dep
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: test
+      app: wy-node
   template:
     metadata:
       labels:
-        app: test
+        app: wy-node
     spec:
       containers:
-        - name: test-con
+        - name: wy-node-con
           image: 655088038759.dkr.ecr.ap-northeast-2.amazonaws.com/wy-app:16
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-svc
+  name: wy-node-svc
 spec:
   type: ClusterIP
   selector:
-    app: test
+    app: wy-node
   ports:
   - port: 3000
     targetPort: 3000
