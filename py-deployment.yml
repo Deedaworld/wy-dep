@@ -12,21 +12,9 @@ spec:
       labels:
         app: wy-py
     spec:
-      serviceAccountName: eks-secret-manager
-      volumes:
-        - name: secrets-store
-          csi:
-            driver: secrets-store.csi.k8s.io
-            readOnly: true
-            volumeAttributes:
-              secretProviderClass: eks-secret-credentials
       containers:
         - name: wy-py-con
           image: 655088038759.dkr.ecr.ap-northeast-2.amazonaws.com/wy-redispy:23
-          volumeMounts:
-            - name: secrets-store
-              mountPath: "/mnt/secrets-store"
-              readOnly: true
 ---
 apiVersion: v1
 kind: Service
