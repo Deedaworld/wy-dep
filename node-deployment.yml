@@ -27,7 +27,7 @@ spec:
             requests:
               cpu: 50m
             limits:
-              cpu: 500m
+              cpu: 400m
           envFrom:
           - secretRef:
               name: eks-secret
@@ -39,7 +39,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: wy-node-svc
+  name: wy-web-svc
 spec:
   type: ClusterIP
   selector:
