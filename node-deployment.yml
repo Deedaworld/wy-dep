@@ -1,16 +1,17 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Statefulset
 metadata:
-  name: wy-node-dep
+  name: wy-web-sts
 spec:
+  serviceName: wy-node-svc
   replicas: 2
   selector:
     matchLabels:
-      app: wy-node
+      app: wy-web
   template:
     metadata:
       labels:
-        app: wy-node
+        app: wy-web
     spec:
       serviceAccountName: eks-secret-manager
       volumes:
@@ -21,7 +22,7 @@ spec:
           volumeAttributes:
             secretProviderClass: "eks-secret-credentials" 
       containers:
-        - name: wy-node-con
+        - name: wy-web-con
           image: 655088038759.dkr.ecr.ap-northeast-2.amazonaws.com/wy-web:45
           resources:
             requests:
@@ -43,7 +44,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: wy-node
+    app: wy-web
   ports:
   - port: 3000
     targetPort: 3000
