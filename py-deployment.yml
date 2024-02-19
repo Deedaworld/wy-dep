@@ -1,16 +1,17 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: wy-py-dep
+  name: wy-seatapp-sts
 spec:
+  serviceName: wy-py-svc
   replicas: 1
   selector:
     matchLabels:
-      app: wy-py
+      app: wy-seatapp
   template:
     metadata:
       labels:
-        app: wy-py
+        app: wy-seatapp
     spec:
       serviceAccountName: eks-secret-manager
       volumes:
@@ -21,7 +22,7 @@ spec:
           volumeAttributes:
             secretProviderClass: "eks-secret-credentials" 
       containers:
-        - name: wy-py-con
+        - name: wy-seatapp-con
           image: 655088038759.dkr.ecr.ap-northeast-2.amazonaws.com/wy-seatapp:46
           resources:
             requests:
@@ -43,7 +44,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: wy-py
+    app: wy-seatapp
   ports:
     - port: 5000
       targetPort: 5000
