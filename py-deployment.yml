@@ -22,7 +22,12 @@ spec:
             secretProviderClass: "eks-secret-credentials" 
       containers:
         - name: wy-py-con
-          image: 655088038759.dkr.ecr.ap-northeast-2.amazonaws.com/wy-redispy:40
+          image: 655088038759.dkr.ecr.ap-northeast-2.amazonaws.com/wy-redispy:150
+          resources:
+            requests:
+              cpu: 50m
+            limits:
+              cpu: 500m
           envFrom:
           - secretRef:
               name: eks-secret
