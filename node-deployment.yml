@@ -30,7 +30,7 @@ spec:
               cpu: 400m
           envFrom:
           - secretRef:
-              name: eks-secret
+              name: aws-secret
           volumeMounts:
           - name: secrets-store
             mountPath: "/mnt/secrets-store"
