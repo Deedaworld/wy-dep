@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: wy-sector-dep
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: wy-sector
