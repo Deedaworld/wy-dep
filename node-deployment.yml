@@ -21,7 +21,7 @@ spec:
             secretProviderClass: "eks-secret-provider" 
       containers:
         - name: wy-web-con
-          image: 655088038759.dkr.ecr.ap-northeast-2.amazonaws.com/wy-web:14
+          image: 655088038759.dkr.ecr.ap-northeast-2.amazonaws.com/wy-web:15
           resources:
             requests:
               cpu: 50m
